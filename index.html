@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Viraj</title>
+<meta name="description" content="Project Viraj — a collection of free, ad-free Android apps built by one developer.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e0e;
+  --bg2: #161616;
+  --gold: #c9a84c;
+  --gold-muted: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.2);
+  --white: #f0ede8;
+  --muted: rgba(240,237,232,0.45);
+  --border: rgba(240,237,232,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Background texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(14,14,14,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; letter-spacing: 1px;
+  color: var(--white); text-decoration: none;
+}
+.nav-brand span { color: var(--gold); }
+.nav-contact {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 100px;
+  padding: 8px 20px; transition: border-color 0.2s, color 0.2s;
+}
+.nav-contact:hover { border-color: var(--gold-border); color: var(--white); }
+
+/* Hero */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 60px 80px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 500; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 32px;
+  animation: fadeUp 0.7s ease both;
+}
+.eyebrow-line { width: 32px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 9vw, 120px);
+  font-weight: 700; line-height: 0.95;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: var(--muted); line-height: 1.7;
+  max-width: 520px; margin-bottom: 16px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+.hero-sub2 {
+  font-size: 14px; color: rgba(240,237,232,0.3);
+  letter-spacing: 0.5px;
+  animation: fadeUp 0.7s ease 0.3s both;
+  margin-bottom: 64px;
+}
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  animation: fadeUp 0.7s ease 0.5s both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+/* Apps section */
+.apps-section {
+  position: relative; z-index: 1;
+  padding: 80px 60px 120px;
+  max-width: 1100px; margin: 0 auto;
+}
+.section-label {
+  font-size: 12px; font-weight: 500; color: var(--gold);
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 600; letter-spacing: -1px;
+  margin-bottom: 60px; color: var(--white);
+}
+.apps-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.app-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 24px; padding: 40px;
+  text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  display: block;
+}
+.app-card:hover { border-color: var(--gold-border); transform: translateY(-4px); }
+.app-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 0% 0%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.app-card:hover::before { opacity: 1; }
+.app-card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 28px;
+}
+.app-icon {
+  width: 64px; height: 64px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  border: 1px solid var(--border);
+}
+.app-status {
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; padding: 5px 12px;
+  border-radius: 100px;
+}
+.status-live {
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--gold);
+}
+.status-soon {
+  background: rgba(240,237,232,0.05);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.app-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 700;
+  color: var(--white); margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.app-tagline {
+  font-size: 15px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+  margin-bottom: 28px;
+}
+.app-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 32px;
+}
+.tag {
+  font-size: 12px; color: rgba(240,237,232,0.4);
+  border: 1px solid var(--border);
+  border-radius: 100px; padding: 4px 12px;
+}
+.app-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 500; color: var(--gold);
+  letter-spacing: 0.3px;
+  transition: gap 0.2s;
+}
+.app-card:hover .app-link { gap: 12px; }
+
+/* Coming soon card */
+.app-card.soon { opacity: 0.5; cursor: default; }
+.app-card.soon:hover { transform: none; border-color: var(--border); }
+
+/* Footer */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 40px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--white);
+}
+.footer-brand span { color: var(--gold); }
+.footer-copy {
+  font-size: 13px; color: var(--muted);
+  text-align: right; line-height: 1.6;
+}
+.footer-copy a {
+  color: var(--gold); text-decoration: none;
+}
+.footer-copy a:hover { text-decoration: underline; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .hero { padding: 100px 24px 80px; }
+  .apps-section { padding: 60px 24px 80px; }
+  .apps-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
+  .footer-copy { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#"><span>Project</span> Viraj</a>
+  <a class="nav-contact" href="mailto:contactprojectviraj@gmail.com">Get in touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="eyebrow-line"></div>
+    Built by one developer
+    <div class="eyebrow-line"></div>
+  </div>
+  <h1>Project<br><em>Viraj</em></h1>
+  <p class="hero-sub">A collection of free, ad-free Android apps — built with care, designed for everyday use.</p>
+  <p class="hero-sub2">Free forever · No ads · No subscriptions</p>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Apps
+  </div>
+</section>
+
+<section class="apps-section">
+  <div class="section-label">The Collection</div>
+  <div class="section-title">Every app, free.</div>
+  <div class="apps-grid">
+
+    <a class="app-card" href="https://amartya-gupta.github.io/butterbook/" target="_blank">
+      <div class="app-card-top">
+        <div class="app-icon">📚</div>
+        <div class="app-status status-live">Live</div>
+      </div>
+      <div class="app-name">ButterBook</div>
+      <p class="app-tagline">Your personal book library, reimagined. Scan, organise, and track every book you own or want to read.</p>
+      <div class="app-tags">
+        <span class="tag">Android</span>
+        <span class="tag">Books</span>
+        <span class="tag">Barcode Scanner</span>
+        <span class="tag">Community</span>
+      </div>
+      <div class="app-link">Visit ButterBook →</div>
+    </a>
+
+    <a class="app-card" href="https://amartya-gupta.github.io/Senscanner-website/" target="_blank">
+      <div class="app-card-top">
+        <div class="app-icon">📷</div>
+        <div class="app-status status-live">Live</div>
+      </div>
+      <div class="app-name">Senscanner</div>
+      <p class="app-tagline">Scan any text, instantly. Offline OCR supporting English and Hindi — no internet, no accounts, no tracking.</p>
+      <div class="app-tags">
+        <span class="tag">Android</span>
+        <span class="tag">OCR</span>
+        <span class="tag">Offline</span>
+        <span class="tag">Hindi + English</span>
+      </div>
+      <div class="app-link">Visit Senscanner →</div>
+    </a>
+
+    <div class="app-card soon">
+      <div class="app-card-top">
+        <div class="app-icon">✦</div>
+        <div class="app-status status-soon">Coming Soon</div>
+      </div>
+      <div class="app-name">Next App</div>
+      <p class="app-tagline">Something new is being built under Project Viraj. Free, ad-free, and designed for everyday use.</p>
+      <div class="app-tags">
+        <span class="tag">Android</span>
+        <span class="tag">Coming Soon</span>
+      </div>
+      <div class="app-link" style="color:var(--muted);">Stay tuned</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand"><span>Project</span> Viraj</div>
+  <div class="footer-copy">
+    Built by Amartya Gupta · Bengaluru, India<br>
+    <a href="mailto:contactprojectviraj@gmail.com">contactprojectviraj@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
