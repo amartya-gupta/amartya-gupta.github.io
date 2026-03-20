@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Viraj</title>
-<meta name="description" content="Project Viraj — a collection of free, ad-free Android apps built by one developer.">
+<title>Project Viraj – Free Android Apps</title>
+<meta name="description" content="Project Viraj — a collection of Android apps built with curiosity, care, and a clear purpose.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -54,12 +54,15 @@ nav {
   color: var(--white); text-decoration: none;
 }
 .nav-brand span { color: var(--gold); }
-.nav-contact {
+.nav-links {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-link {
   font-size: 13px; color: var(--muted); text-decoration: none;
   border: 1px solid var(--border); border-radius: 100px;
   padding: 8px 20px; transition: border-color 0.2s, color 0.2s;
 }
-.nav-contact:hover { border-color: var(--gold-border); color: var(--white); }
+.nav-link:hover { border-color: var(--gold-border); color: var(--white); }
 
 /* Hero */
 .hero {
@@ -133,6 +136,32 @@ nav {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
+
+/* Featured card spans full width */
+.app-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.app-card.featured .app-card-body {
+  display: flex; flex-direction: column;
+}
+.app-card.featured .app-card-visual {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 160px;
+}
+.featured-glow {
+  width: 140px; height: 140px;
+  border-radius: 32px;
+  background: radial-gradient(ellipse at 40% 40%, rgba(201,168,76,0.18) 0%, rgba(201,168,76,0.04) 70%, transparent 100%);
+  border: 1px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  box-shadow: 0 0 60px rgba(201,168,76,0.08);
+}
+
 .app-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -143,6 +172,7 @@ nav {
   display: block;
 }
 .app-card:hover { border-color: var(--gold-border); transform: translateY(-4px); }
+.app-card.featured:hover { transform: translateY(-4px); }
 .app-card::before {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse at 0% 0%, rgba(201,168,76,0.04) 0%, transparent 60%);
@@ -158,6 +188,22 @@ nav {
   display: flex; align-items: center; justify-content: center;
   font-size: 28px;
   border: 1px solid var(--border);
+  overflow: hidden;
+}
+.app-icon img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 14px;
+}
+.app-icon-wide {
+  height: 56px; width: 200px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden; padding: 8px 12px;
+}
+.app-icon-wide img {
+  height: 100%; width: 100%;
+  object-fit: contain;
 }
 .app-status {
   font-size: 11px; font-weight: 500; letter-spacing: 1px;
@@ -206,6 +252,45 @@ nav {
 .app-card.soon { opacity: 0.5; cursor: default; }
 .app-card.soon:hover { transform: none; border-color: var(--border); }
 
+/* Blog section */
+.blog-section {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 80px 60px;
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px;
+}
+.blog-left {}
+.blog-label {
+  font-size: 12px; font-weight: 500; color: var(--gold);
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.blog-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600; letter-spacing: -0.5px;
+  color: var(--white); margin-bottom: 14px;
+  line-height: 1.15;
+}
+.blog-desc {
+  font-size: 15px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+  max-width: 480px;
+}
+.blog-cta {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 500;
+  color: var(--gold); text-decoration: none;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px; padding: 14px 28px;
+  transition: background 0.2s, gap 0.2s;
+  white-space: nowrap;
+}
+.blog-cta:hover { background: var(--gold-muted); gap: 14px; }
+
 /* Footer */
 footer {
   position: relative; z-index: 1;
@@ -219,6 +304,9 @@ footer {
   color: var(--white);
 }
 .footer-brand span { color: var(--gold); }
+.footer-right {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+}
 .footer-copy {
   font-size: 13px; color: var(--muted);
   text-align: right; line-height: 1.6;
@@ -227,6 +315,15 @@ footer {
   color: var(--gold); text-decoration: none;
 }
 .footer-copy a:hover { text-decoration: underline; }
+.footer-links {
+  display: flex; gap: 20px; align-items: center;
+}
+.footer-links a {
+  font-size: 12px; color: rgba(240,237,232,0.3);
+  text-decoration: none; letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
 
 /* Animations */
 @keyframes fadeUp {
@@ -235,13 +332,25 @@ footer {
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .app-card.featured {
+    grid-template-columns: 1fr;
+  }
+  .app-card.featured .app-card-visual { display: none; }
+}
 @media (max-width: 768px) {
   nav { padding: 16px 24px; }
+  .nav-links { gap: 8px; }
+  .nav-link { padding: 7px 14px; font-size: 12px; }
   .hero { padding: 100px 24px 80px; }
   .apps-section { padding: 60px 24px 80px; }
   .apps-grid { grid-template-columns: 1fr; }
+  .app-card.featured { grid-column: auto; }
+  .blog-section { flex-direction: column; align-items: flex-start; padding: 60px 24px; }
   footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
+  .footer-right { align-items: center; }
   .footer-copy { text-align: center; }
+  .footer-links { justify-content: center; }
 }
 </style>
 </head>
@@ -249,18 +358,20 @@ footer {
 
 <nav>
   <a class="nav-brand" href="#"><span>Project</span> Viraj</a>
-  <a class="nav-contact" href="mailto:contactprojectviraj@gmail.com">Get in touch</a>
+  <div class="nav-links">
+    <a class="nav-link" href="https://martytalks.wordpress.com/2026/03/09/project-viraj-i-was-never-going-to-learn-to-code-and-then-i-did-sort-of/" target="_blank">Blog</a>
+    <a class="nav-link" href="https://forms.gle/w9dsdXU82mmZZHVMA" target="_blank">Get in touch</a>
+  </div>
 </nav>
 
 <section class="hero">
   <div class="hero-eyebrow">
     <div class="eyebrow-line"></div>
-    Built by one developer
+    Built with curiosity · Designed with purpose
     <div class="eyebrow-line"></div>
   </div>
   <h1>Project<br><em>Viraj</em></h1>
-  <p class="hero-sub">A collection of free, ad-free Android apps — built with care, designed for everyday use.</p>
-  <p class="hero-sub2">Free forever · No ads · No subscriptions</p>
+  <p class="hero-sub">A collection of Android apps — built with care, designed for everyday use.</p>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     Apps
@@ -269,12 +380,12 @@ footer {
 
 <section class="apps-section">
   <div class="section-label">The Collection</div>
-  <div class="section-title">Every app, free.</div>
+  <div class="section-title">The apps.</div>
   <div class="apps-grid">
 
     <a class="app-card" href="https://amartya-gupta.github.io/butterbook/" target="_blank">
       <div class="app-card-top">
-        <div class="app-icon">📚</div>
+        <div class="app-icon"><img src="assets/butterbook.png" alt="ButterBook logo"></div>
         <div class="app-status status-live">Live</div>
       </div>
       <div class="app-name">ButterBook</div>
@@ -283,14 +394,13 @@ footer {
         <span class="tag">Android</span>
         <span class="tag">Books</span>
         <span class="tag">Barcode Scanner</span>
-        <span class="tag">Community</span>
       </div>
       <div class="app-link">Visit ButterBook →</div>
     </a>
 
     <a class="app-card" href="https://amartya-gupta.github.io/Senscanner-website/" target="_blank">
       <div class="app-card-top">
-        <div class="app-icon">📷</div>
+        <div class="app-icon-wide"><img src="assets/senscanner.png" alt="Senscanner logo"></div>
         <div class="app-status status-live">Live</div>
       </div>
       <div class="app-name">Senscanner</div>
@@ -304,13 +414,35 @@ footer {
       <div class="app-link">Visit Senscanner →</div>
     </a>
 
+    <!-- Samaritam — featured full-width as newest app -->
+    <a class="app-card featured" href="https://amartya-gupta.github.io/samaritam-website/" target="_blank">
+      <div class="app-card-body">
+        <div class="app-card-top">
+          <div class="app-icon-wide"><img src="assets/samaritam.png" alt="Samaritam logo"></div>
+          <div class="app-status status-live">Live</div>
+        </div>
+        <div class="app-name">Samaritam</div>
+        <p class="app-tagline">Analyse any news article for political bias, rhetorical temperature, emotional language, and more — across seven dimensions, instantly.</p>
+        <div class="app-tags">
+          <span class="tag">Web App</span>
+          <span class="tag">News</span>
+          <span class="tag">Bias Analyser</span>
+          <span class="tag">AI-powered</span>
+        </div>
+        <div class="app-link">Visit Samaritam →</div>
+      </div>
+      <div class="app-card-visual">
+        <div class="featured-glow"><img src="assets/samaritam.png" alt="Samaritam logo" style="width:85%; height:auto; object-fit:contain;"></div>
+      </div>
+    </a>
+
     <div class="app-card soon">
       <div class="app-card-top">
         <div class="app-icon">✦</div>
         <div class="app-status status-soon">Coming Soon</div>
       </div>
       <div class="app-name">Next App</div>
-      <p class="app-tagline">Something new is being built under Project Viraj. Free, ad-free, and designed for everyday use.</p>
+      <p class="app-tagline">Something new is taking shape under Project Viraj. Designed for everyday use, built with the same care.</p>
       <div class="app-tags">
         <span class="tag">Android</span>
         <span class="tag">Coming Soon</span>
@@ -321,11 +453,28 @@ footer {
   </div>
 </section>
 
+<!-- Blog section -->
+<div class="blog-section">
+  <div class="blog-left">
+    <div class="blog-label">From the blog</div>
+    <div class="blog-title">Building in public,<br>one app at a time.</div>
+    <p class="blog-desc">The story behind every app — the decisions, the dead ends, and what it actually feels like to build software with AI as your co-pilot.</p>
+  </div>
+  <a class="blog-cta" href="https://martytalks.wordpress.com/2026/03/09/project-viraj-i-was-never-going-to-learn-to-code-and-then-i-did-sort-of/" target="_blank">Read the blog →</a>
+</div>
+
 <footer>
   <div class="footer-brand"><span>Project</span> Viraj</div>
-  <div class="footer-copy">
-    Built by Amartya Gupta · Bengaluru, India<br>
-    <a href="mailto:contactprojectviraj@gmail.com">contactprojectviraj@gmail.com</a>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="https://github.com/amartya-gupta" target="_blank">GitHub</a>
+      <a href="https://martytalks.wordpress.com/2026/03/09/project-viraj-i-was-never-going-to-learn-to-code-and-then-i-did-sort-of/" target="_blank">Blog</a>
+      <a href="https://forms.gle/w9dsdXU82mmZZHVMA" target="_blank">Contact</a>
+    </div>
+        <div class="footer-copy">
+      Made with ♥ in India<br>
+      © 2026 Project Viraj. All rights reserved.
+    </div>
   </div>
 </footer>
 
